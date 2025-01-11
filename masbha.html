@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مسبحة إلكترونية</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+            color: #2d3436;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .tasbih-container {
+            text-align: center;
+            background: #ffffff;
+            border: 2px solid #2c3e50;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .counter {
+            font-size: 48px;
+            margin: 20px 0;
+            color: #16a085;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .button.increment {
+            background-color: #16a085;
+            color: #fff;
+        }
+
+        .button.increment:hover {
+            background-color: #13a076;
+        }
+
+        .button.reset {
+            background-color: #f39c12;
+            color: #fff;
+        }
+
+        .button.reset:hover {
+            background-color: #e98e0c;
+        }
+    </style>
+</head>
+<body>
+    <div class="tasbih-container">
+        <h1>مسبحة إلكترونية</h1>
+        <div id="counter" class="counter">0</div>
+        <div class="buttons">
+            <button class="button increment" onclick="incrementCounter()">زيادة</button>
+            <button class="button reset" onclick="resetCounter()">إعادة ضبط</button>
+        </div>
+    </div>
+
+    <script>
+        // استرجاع القيمة المحفوظة من localStorage
+        let count = localStorage.getItem('tasbihCounter') ? parseInt(localStorage.getItem('tasbihCounter')) : 0;
+
+        const counterElement = document.getElementById('counter');
+
+        // تحديث واجهة العدّاد
+        function updateCounter() {
+            counterElement.textContent = count;
+        }
+
+        // زيادة العدّاد
+        function incrementCounter() {
+            count++;
+            localStorage.setItem('tasbihCounter', count);
+            updateCounter();
+        }
+
+        // إعادة ضبط العدّاد
+        function resetCounter() {
+            count = 0;
+            localStorage.setItem('tasbihCounter', count);
+            updateCounter();
+        }
+
+        // عرض القيمة المحفوظة عند التحميل
+        updateCounter();
+    </script>
+</body>
+</html>
